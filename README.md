@@ -174,7 +174,7 @@ type CodefatherRule {
 }
 ```
 
-The name should match your GitHub username (e.g. `tomhagen`). In CLI mode, the name is retrieved from your Git config. You can set it like this:
+The names should match the GitHub usernames (e.g., `tomhagen`). In CLI mode, your name will be retrieved retrieved from your Git configuration. You can set it like this:
 
 ```bash
  git config --global user.username "DonCorleone"
@@ -258,7 +258,7 @@ DoneDeal0 | talk.donedeal0@gmail.com
 
 ## SUPPORT
 
-If you or your company uses **Codefather**, please show your support by becoming a sponsor! Your name and company logo will be displayed on the `README.md`. 
+Show your support for **Codefather** by becoming a sponsor if you or your company uses it! Your name or company logo will be displayed in the `README` and on the website.
 
 Premium support is also available. https://github.com/sponsors/DoneDeal0
 
