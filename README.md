@@ -98,6 +98,8 @@ You can either add a script shortcut in your `package.json`:
 
 Or directly run the commands with `npx`.
 
+> 👉 The CLI mode only checks files that are staged, unstaged, newly created, or deleted. Once a file is committed, it won’t be rechecked unless modified again. For full enforcement across all commits, use Codefather in a GitHub Action.
+
 <hr/>
 
 # CONFIG
@@ -139,7 +141,7 @@ export default {
 
 ## ⚙️ Here's how it works. 
 
-> The `CodefatherConfig` allows you to control which users can modify parts of your codebase, and to refine the behavior of `codefather`. 
+The `CodefatherConfig` allows you to control which users can modify parts of your codebase, and to refine the behavior of `codefather`. 
 
 ```ts
 type CodefatherConfig {
@@ -166,7 +168,7 @@ type CodefatherConfig {
 }
 ```
 
-> A `Rule` defines which users can change a set of files. 
+A `Rule` defines which users can change a set of files. 
 
 ```ts
 type CodefatherRule {
