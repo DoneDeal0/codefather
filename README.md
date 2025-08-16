@@ -42,6 +42,8 @@ Run it offline and online with a single config, enjoy advanced file-matching pat
 |Commit blockage | ✅ | ❌ |
 |Godfather vibe (optional)  | ✅ | ❌ |
 
+<hr/>
+
 # SCREENSHOTS
 
 <div style="display: flex; flex-wrap: wrap; gap: 8px;">
@@ -56,6 +58,7 @@ Run it offline and online with a single config, enjoy advanced file-matching pat
 
 </div>
 
+<hr/>
 
 # INSTALLATION
 
@@ -63,9 +66,18 @@ Run it offline and online with a single config, enjoy advanced file-matching pat
 npm install @donedeal0/codefather --save-dev
 ```
 
+<hr/>
+
 # USAGE
 
-**Codefather** has 3 commands:
+## TLDR
+
+```bash
+npx codefather-init
+npm run codefather
+```
+
+## Commands
 
 - `codefather`: checks if your access rules are respected in your repository.
 - `codefather-init`: creates a default config at the root of your repository and adds a `codefather` command to your `package.json`. 
@@ -84,12 +96,9 @@ You can either add a script shortcut in your `package.json`:
 }
 ```
 
-Or directly run the commands with `npx`:
+Or directly run the commands with `npx`.
 
-```bash
-npx codefather-init
-npx codefather
-```
+<hr/>
 
 # CONFIG
 
@@ -270,9 +279,13 @@ We believe open source libraries should be both useful and entertaining. The Don
 
 This being said, if you don't like the gangster movie atmosphere and still want to use `codefather`, you can absolutely opt-out by providing your own custom messages and hiding the Don's face in the terminal. 
 
+<hr/>
+
 # CREDITS
 
 DoneDeal0 | talk.donedeal0@gmail.com
+
+<hr/>
 
 # SUPPORT
 
@@ -285,6 +298,8 @@ Premium support is also available. https://github.com/sponsors/DoneDeal0
 <img width="999" height="371" alt="sponsor" src="https://res.cloudinary.com/dmjisqsyo/image/upload/v1754334056/respect_wjtqm6.png" />
 </a>
 <br/>
+
+<hr/>
 
 # CONTRIBUTING
 
