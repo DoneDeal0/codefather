@@ -1,6 +1,6 @@
 {
   "name": "@donedeal0/codefather",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Codefather protects your codebase by controlling who can change what. Set authorization levels, lock down files, and enforce your rules—offline via CLI or online with GitHub Actions.",
   "license": "ISC",
   "author": "DoneDeal0",
