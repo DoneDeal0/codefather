@@ -26,17 +26,17 @@ export interface CodefatherConfig {
   options?: {
     /** If true, the codefather face will appear in the terminal. Defaults to true. */
     showAscii?: boolean;
-    /** If true, all the pull request committers will be checked against the authorized users. Only used in a Github Action context. Defaults to true. */
+    /** If true, all the pull request committers will be checked against the authorized users. Only used in a GitHub Action context. Defaults to true. */
     vouchForAllCommitters?: boolean;
   };
-  /** Options to auto assign reviewers on Github */
+  /** Options to auto assign reviewers on GitHub */
   codeReviews?: {
     /** If true, goodfellas responsible for modified files will be assigned on relevant pull requests, except the committers. Defaults to true. */
     autoAssignGoodfellas?: boolean;
     /** If true, caporegimes will be assigned on every pull request, except the committers. Defaults to false. */
     autoAssignCaporegimes?: boolean;
   };
-  /** Group users in teams. Crew names and composition are flexible in CLI mode but should match your github teams if used in a Github Action */
+  /** Group users in teams. Crew names and composition are flexible in CLI mode but should match your GitHub teams if used in a Github Action */
   crews?: Record<CrewName, GitUser[]>;
 }
 

@@ -16,33 +16,33 @@
 
 <hr/>
 
-## CODEOWNERS COMPARISON
+# CODEOWNERS COMPARISON
 
-**Codefather** can serve as a drop-in replacement for GitHub’s CODEOWNERS—or play alongside it like a trusted consigliere.
+GitHub’s [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) auto-assigns reviewers. But it can’t enforce real rules. 
 
-GitHub’s [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) lets you define file owners in your codebase and automatically assign them as reviewers. No pull request can be merged until an appropriate codeowner has approved it.
+**Codefather** gives you absolute control over your repository and can either replace or supercharge CODEOWNERS, like a trusted *consigliere*. 
 
-**Codefather** offers more flexibility in assigning codeowners: support for various roles (teams, leads, developers), complex file-match rules, local execution, commit protection, and more. It can prevent unauthorized changes, warn developers, list prohibited files with error levels and contact points, block sensitive merges via GitHub Actions, and auto-assign reviewers when needed.
+It blocks unauthorized changes before they waste review time, empowers leads without flooding them with every PR, lets you choose between hard blocking or advisory enforcement, and provides actionable feedback by listing sensitive files touched and who to contact. 
 
-**Codefather** is designed to offer a delightful developer experience—a single config file for both CLI and GitHub Action usage, efficient commands to protect your codebase, automatic translation of CODEOWNERS into Codefather config, and over 100 personalized reactions to your commits. 
+Run it offline and online with a single config, enjoy advanced file-matching patterns, automatically translate your CODEOWNERS file, and get over 100 personalized reactions to your commits.
 
 **Whether you're enforcing strict governance or just want the Don watching over your commits, Codefather brings clarity, control, and charisma to your workflow.**
 
 | FEATURE  | CODEFATHER | GITHUB CODEOWNERS |
 |--|--|--|
 |Files and folders protection | ✅ | ✅ |
-|Github Action  | ✅ | ✅ |
+|GitHub Action  | ✅ | ✅ |
 |Auto-assign reviewers  | ✅ | ✅ |
 |Teams support | ✅ | ✅ |
 |CLI + pre-commit | ✅ | ❌ |
+|Advanced file-matching | ✅ | ❌ |
 |Roles hierarchy | ✅ | ❌ |
-|Personalized feedbacks | ✅ | ❌ |
+|Personalized feedback | ✅ | ❌ |
 |Customizable config  | ✅ | ❌ |
 |Commit blockage | ✅ | ❌ |
-|Godfather vibe  | ✅ | ❌ |
+|Godfather vibe (optional)  | ✅ | ❌ |
 
-
-## SCREENSHOTS
+# SCREENSHOTS
 
 <div style="display: flex; flex-wrap: wrap; gap: 8px;">
 
@@ -57,13 +57,13 @@ GitHub’s [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-re
 </div>
 
 
-## INSTALLATION
+# INSTALLATION
 
 ```bash
 npm install @donedeal0/codefather --save-dev
 ```
 
-## USAGE
+# USAGE
 
 **Codefather** has 3 commands:
 
@@ -91,9 +91,9 @@ npx codefather-init
 npx codefather
 ```
 
-## CONFIG
+# CONFIG
 
-At the root of your repository, add a `codefather.ts` or `codefather.json` file. 
+At the root of your repository, add a `codefather.ts` or `codefather.json` file (you can also use `npx codefather-init`):
 
 ```ts
 import type { CodefatherConfig } from "@donedeal0/codefather";
@@ -128,7 +128,7 @@ export default {
 } satisfies CodefatherConfig;
 ```
 
-⚙️ Here's how it works. 
+## ⚙️ Here's how it works. 
 
 > The `CodefatherConfig` allows you to control which users can modify parts of your codebase, and to refine the behavior of `codefather`. 
 
@@ -145,14 +145,14 @@ type CodefatherConfig {
     /** If true, all the pull request committers will be checked against the authorized users. Only used in a GitHub Action context. Defaults to true. */
     vouchForAllCommitters?: boolean;
   };
-  /** Options to auto assign reviewers on Github */
+  /** Options to auto assign reviewers on GitHub */
   codeReviews?: {
     /** If true, goodfellas responsible for modified files will be assigned on relevant pull requests, except the committers. Defaults to true. */
     autoAssignGoodfellas: boolean;
     /** If true, caporegimes will be assigned on every pull request, except the committers. Defaults to false. */
     autoAssignCaporegimes: boolean;
   };
-  /** Group users into teams. Crew names and composition are flexible in CLI mode but should match your github teams if used in a Github Action */
+  /** Group users into teams. Crew names and composition are flexible in CLI mode but should match your GitHub teams if used in a GitHub Action */
   crews?: Record<string, {name: string}[]>;
 }
 ```
@@ -174,7 +174,9 @@ type CodefatherRule {
 }
 ```
 
-The names should match the GitHub usernames (e.g., `tomhagen`). In CLI mode, your name will be retrieved retrieved from your Git configuration. You can set it like this:
+## Name format
+
+The names should match the GitHub usernames (e.g., `tomhagen`). In CLI mode, your name will be retrieved from your Git configuration. You can set it like this:
 
 ```bash
  git config --global user.username "DonCorleone"
@@ -183,12 +185,12 @@ The names should match the GitHub usernames (e.g., `tomhagen`). In CLI mode, you
 You can verify the current value like this:
 
 ```bash
-git config user.username # return DonCorleone
+git config user.username # returns DonCorleone
 ```
 
-In a Github Action, `codefather` will use Github's API, so you don't have to worry about the git config.
+In a GitHub Action, `codefather` will use GitHub's API, so you don't have to worry about the git config.
 
-## How to Write Rules
+## How to write rules
 
 - Match all files in a folder (recursively): `src/myfolder/`
 - Match a specific file: `src/myfolder/file.ts`
@@ -200,11 +202,15 @@ In a Github Action, `codefather` will use Github's API, so you don't have to wor
 
 ℹ️ *More examples are available in the test files. Codefather's matching patterns follow classic file matcher rules, like GitHub CODEOWNERS.*
 
+## Pre-commit
+
+If you have [HUSKY](https://typicode.github.io/husky/) installed, you can add the `npm run codefather` command in the `.husky/pre-commit` file.
+
 <hr/>
 
 # GITHUB ACTION
 
-Add this code in your `.github/workflows/codefather.yml` (the file name is up to you). The `GITHUB_TOKEN` will be automatically injected by Github.
+Add this code in your `.github/workflows/codefather.yml` file (the file name is up to you). The `GITHUB_TOKEN` will be automatically injected by GitHub.
 
 ```yml
 name: Codefather Validation
@@ -264,11 +270,11 @@ We believe open source libraries should be both useful and entertaining. The Don
 
 This being said, if you don't like the gangster movie atmosphere and still want to use `codefather`, you can absolutely opt-out by providing your own custom messages and hiding the Don's face in the terminal. 
 
-## CREDITS
+# CREDITS
 
 DoneDeal0 | talk.donedeal0@gmail.com
 
-## SUPPORT
+# SUPPORT
 
 Show your support for **Codefather** by becoming a sponsor if you or your company uses it! Your name or company logo will be displayed in the `README` and on the website.
 
@@ -280,6 +286,6 @@ Premium support is also available. https://github.com/sponsors/DoneDeal0
 </a>
 <br/>
 
-## CONTRIBUTING
+# CONTRIBUTING
 
 Issues and pull requests are welcome!
